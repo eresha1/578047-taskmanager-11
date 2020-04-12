@@ -98,7 +98,7 @@ export const createTaskEditTemplate = (task) => {
       : ``
     }
              <button class="card__repeat-toggle" type="button">
-               repeat:<span class="card__repeat-status">>${isRepeatingTask ? `yes` : `no`}</span>
+               repeat:<span class="card__repeat-status">${isRepeatingTask ? `yes` : `no`}</span>
              </button>
              ${
     isRepeatingTask ?
