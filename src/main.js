@@ -20,8 +20,8 @@ const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const filters = generateFilters();
 const tasks = generateTasks(TASK_COUNT);
+const filters = generateFilters(tasks);
 
 render(siteHeaderElement, createSiteMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
