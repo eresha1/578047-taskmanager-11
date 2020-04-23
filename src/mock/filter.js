@@ -1,74 +1,29 @@
-const getOverdueTasksCount = (tasks) => {
-  return tasks.reduce((accumulator, task) => {
-    if (task.dueDate && task.dueDate.toLocaleDateString() < (new Date()).toLocaleDateString()) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
+const generateCountFilters = (tasks) => {
+  const today = new Date();
+  const overdueCount = tasks.filter((task) => task.dueDate instanceof Date && task.dueDate < today).length;
+  const todayCount = tasks.filter((task) => task.dueDate instanceof Date && task.dueDate.getDay() === today.getDay() && task.dueDate.getMonth() === today.getMonth()).length;
+  const repeatingCount = tasks.filter((task) => Object.values(task.repeatingDays).includes(true)).length;
+  const favoriteCount = tasks.filter((task) => !!task.isFavorite).length;
+  const arhiveCount = tasks.filter((task) => !!task.isArchive).length;
+  const allCount = tasks.length - arhiveCount;
+
+  return [
+    {title: `all`, count: allCount},
+    {title: `overdue`, count: overdueCount},
+    {title: `today`, count: todayCount},
+    {title: `favorites`, count: favoriteCount},
+    {title: `repeating`, count: repeatingCount},
+    {title: `archive`, count: arhiveCount}
+  ];
 };
 
-const getTodayTasksCount = (tasks) => {
-  return tasks.reduce((accumulator, task) => {
-    if (task.dueDate && task.dueDate.toLocaleDateString() === (new Date()).toLocaleDateString()) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
-};
 
-const getRepeatingTasksCount = (tasks) => {
-  return tasks.reduce((accumulator, task) => {
-    if (task.repeatingDays && Object.values(task.repeatingDays).includes(true)) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
-};
-
-const getFavoriteTasksCount = (tasks) => {
-  return tasks.reduce((accumulator, task) => {
-    if (task.isFavorite) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
-};
-
-const getArchiveTasksCount = (tasks) => {
-  return tasks.reduce((accumulator, task) => {
-    if (task.isArchive) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
-};
-
-const getAllTasksCount = (tasks) => {
-  return tasks.length - getArchiveTasksCount(tasks);
-};
-
-const filterNames = [
-  `all`, `overdue`, `today`, `favorites`, `repeating`, `archive`
-];
-
-const FilterCount = {
-  'all': getAllTasksCount,
-  'overdue': getOverdueTasksCount,
-  'today': getTodayTasksCount,
-  'favorites': getFavoriteTasksCount,
-  'repeating': getRepeatingTasksCount,
-  'archive': getArchiveTasksCount
-};
-
-const generateFilters = (tasks) => {
-  return filterNames.map((it) => {
+export const generateFilters = (tasks) => {
+  return generateCountFilters(tasks).map((it) => {
     return {
-      name: it,
-      count: FilterCount[`${it}`](tasks)
+      name: it.title,
+      count: it.count
     };
   });
 };
 
-export {
-  generateFilters
-};

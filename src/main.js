@@ -22,7 +22,6 @@ const render = (container, template, place = `beforeend`) => {
 
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
-
 render(siteHeaderElement, createSiteMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
 render(siteMainElement, createBoardTemplate());
