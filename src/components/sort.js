@@ -28,6 +28,7 @@ export default class Sort extends AbstractComponent {
   }
 
   getSortType() {
+    console.log(this._currenSortType)
     return this._currenSortType;
   }
 
