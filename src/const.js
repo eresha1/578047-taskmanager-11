@@ -17,3 +17,10 @@ export const MONTH_NAMES = [
   `December`,
 ];
 
+export const OptionTasks = {
+  TASK_COUNT: 22,
+  SHOWING_TASKS_COUNT_ON_START: 8,
+  SHOWING_TASKS_COUNT_BY_BUTTON: 8,
+  MIN_DESCRIPTION_LENGTH: 1,
+  MAX_DESCRIPTION_LENGTH: 240
+};
