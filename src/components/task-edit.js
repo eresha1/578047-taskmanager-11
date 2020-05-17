@@ -67,8 +67,7 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
 };
 
 const createRepeatTask = (isRepeatingTask, repeatingDaysMarkup) =>
-  isRepeatingTask ?
-  `<fieldset class="card__repeat-days">
+  isRepeatingTask ? `<fieldset class="card__repeat-days">
     <div class="card__repeat-days-inner">
       ${repeatingDaysMarkup}
     </div>

@@ -24,3 +24,12 @@ export const OptionTasks = {
   MIN_DESCRIPTION_LENGTH: 1,
   MAX_DESCRIPTION_LENGTH: 240
 };
+
+export const FilterType = {
+  ALL: `all`,
+  ARCHIVE: `archive`,
+  FAVORITES: `favorites`,
+  OVERDUE: `overdue`,
+  REPEATING: `repeating`,
+  TODAY: `today`,
+};
