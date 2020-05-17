@@ -8,8 +8,6 @@ import {generateTasks} from "./mock/task.js";
 import {render, RenderPosition} from "./utils/render.js";
 import {OptionTasks} from "./const.js";
 
-// const TASK_COUNT = 22;
-
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
